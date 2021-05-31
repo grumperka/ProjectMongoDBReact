@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
+import { Button, Form } from 'react-bootstrap';
 import authService from './api-authorization/AuthorizeService'
 
 export class addPokoj extends Component {
@@ -56,36 +57,33 @@ export class addPokoj extends Component {
             data: Pokoj //dane do przesłania
         })
 
-       /* axios.post(`https://localhost:44334/pokoj`, { Pokoj }, config)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            }) */
     }
 
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Label>
                         Nr. pokoju:
-                        <input type="text" name="nr_pokoju" value={this.state.nrPokoju} ref={this.nrPokojuInput} onChange={this.handleChange}/>
-                    </label><br />
-                    <label>
+                        <Form.Control type="text" name="nr_pokoju" value={this.state.nrPokoju} ref={this.nrPokojuInput} onChange={this.handleChange}/>
+                    </Form.Label><br />
+                    <Form.Label>
                         Nazwa:
-                        <input type="text" name="nazwa" value={this.state.nazwaPokoju} ref={this.nazwaPokojuInput} onChange={this.handleChange} />
-                    </label><br />
-                    <label>
+                        <Form.Control type="text" name="nazwa" value={this.state.nazwaPokoju} ref={this.nazwaPokojuInput} onChange={this.handleChange} />
+                    </Form.Label><br />
+                    <Form.Label>
                         Ile osób:
-                        <input type="text" name="ile_osob" value={this.state.ileOsobPokoju} ref={this.ileOsobPokojuInput} onChange={this.handleChange}/>
-                    </label><br />
-                    <label>
+                        <Form.Control type="text" name="ile_osob" value={this.state.ileOsobPokoju} ref={this.ileOsobPokojuInput} onChange={this.handleChange}/>
+                    </Form.Label><br />
+                    <Form.Label>
                         Cena:
-                        <input type="text" name="cena" value={this.state.cenaPokoju} ref={this.cenaPokojuInput} onChange={this.handleChange}/>
-                    </label><br />
-                    <input type="submit" value="Wyślij" />
-                </form>
+                        <Form.Control type="text" name="cena" value={this.state.cenaPokoju} ref={this.cenaPokojuInput} onChange={this.handleChange}/>
+                    </Form.Label><br />
+                    <Button variant="primary" type="submit">
+                        Wyslij
+                     </Button>
+                </Form>
             </div>
         );
     }
