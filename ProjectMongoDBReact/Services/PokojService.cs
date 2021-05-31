@@ -47,9 +47,20 @@ namespace MongodbDatabase.Services
 
         public Pokoj Create(Pokoj p)
         {
-            _pokoj.InsertOne(p);
+            var connectionString = "mongodb://localhost";
+            var client = new MongoClient(connectionString);
+
+            var db = client.GetDatabase("bazaDanych");
+            var collection = db.GetCollection<Pokoj>("pokoje");
+
+            collection.InsertOne(new Pokoj { nr_pokoju = p.nr_pokoju, cena = p.cena, ile_osob = p.ile_osob, nazwa = p.nazwa });
+
+            //_pokoj.InsertOne(p);
+
             return p;
         }
+
+       
 
         public void Update(string id, Pokoj pokojIn) =>
             _pokoj.ReplaceOne(p => p.Id == id, pokojIn);

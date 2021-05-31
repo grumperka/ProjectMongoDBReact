@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import authService from './api-authorization/AuthorizeService'
 
 export class Pokoje extends Component {
@@ -45,7 +46,9 @@ export class Pokoje extends Component {
 
     return (
       <div>
-        <h1 id="tabelLabel" >Lista pokoi</h1>
+            <h1 id="tabelLabel" >Lista pokoi</h1>
+            <a href ="/addPokoj">Dodaj pokój</a>
+            <br />
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
