@@ -6,7 +6,6 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Pokoje } from './components/Pokoje';
 import { addPokoj } from './components/addPokoj';
-import { editPokoj } from './components/editPokoj';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
@@ -24,7 +23,6 @@ export default class App extends Component {
             <AuthorizeRoute path='/fetch-data' component={FetchData} />
             <AuthorizeRoute path='/pokoje' component={Pokoje} />
             <Route path='/addPokoj' component={addPokoj} />
-            <Route path='/editPokoj' component={editPokoj} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>
     );

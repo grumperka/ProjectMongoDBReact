@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
 import authService from './api-authorization/AuthorizeService'
 import 'regenerator-runtime/runtime'
 
@@ -14,7 +15,8 @@ export class Pokoje extends Component {
 
   componentDidMount() {
     this.populatePokojData();
-  }
+    }
+
 
   static renderPokojeTable(pokojeList) {
     return (
@@ -37,9 +39,9 @@ export class Pokoje extends Component {
                   <td>{pokoj.nazwa}</td>
                   <td>{pokoj.ile_osob}</td>
                   <td>{pokoj.cena}</td>
-                  <td><Button variant="outline-warning" size="sm" href={'/pokoj/editPokoj?id=' + pokoj.id}>Edytuj</Button></td>
-                  <td><Button variant="outline-danger" size="sm" href={'/pokoj/deletePokoj?id=' + pokoj.id}>Usun</Button></td>
-                  <td><Button variant="outline-success" href={'/pokoj/createBook?id=' + pokoj.id}>Zarezerwuj</Button></td>
+                  <td><Button variant="outline-warning" size="sm" value={pokoj.id} onClick={editPokoj}>Edytuj</Button></td>
+                  <td><Button variant="outline-danger" size="sm" value={pokoj.id} onClick={deletePokoj}>Usun</Button></td>
+                  <td><Button variant="outline-success" href={'/book/create?id=' + pokoj.id}>Zarezerwuj</Button></td>
             </tr>
           )}
         </tbody>
@@ -74,3 +76,54 @@ export class Pokoje extends Component {
       this.setState({ pokoje: data, loading: false });
   }
 }
+////////////////////////////////
+const deletePokoj = (event) => {
+    //alert('Look ' + event.target.value);
+
+    let a = deleteData(event.target.value);
+}
+
+async function deleteData(idPokoj) {
+    const token = await authService.getAccessToken();
+
+    axios.delete(`/pokoj/Delete/` + idPokoj,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                'id': idPokoj
+            }
+
+        }).then(window.location.reload());
+
+
+
+    return 0;
+}
+////////////////////////////////////
+/*
+const editPokoj = (event) => {
+    //alert('Look ' + event.target.value);
+
+    let a = editData(event.target.value);
+}
+
+async function deleteData(idPokoj) {
+    const token = await authService.getAccessToken();
+
+    axios.put(`/pokoj/Edit/` + idPokoj,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                'id': idPokoj
+            }
+
+        }).then(window.location.reload());
+
+
+
+    return 0;
+}*/

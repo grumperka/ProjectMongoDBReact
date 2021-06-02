@@ -44,7 +44,8 @@ namespace ProjectMongoDBReact.Models
             {
                 _pokojService.Create(p);
 
-                return CreatedAtRoute("GetPokoj", new { id = p.Id.ToString() }, p);
+                return NoContent();
+                //CreatedAtRoute("GetPokoj", new { id = p.Id.ToString() }, p);
             }
 
             [HttpPut("{id:length(24)}")]
@@ -63,6 +64,7 @@ namespace ProjectMongoDBReact.Models
             }
 
             [HttpDelete("{id:length(24)}")]
+            [Route("Delete/{id}")]
             public IActionResult Delete(string id)
             {
                 var p = _pokojService.Get(id);
