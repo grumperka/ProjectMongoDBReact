@@ -50,6 +50,7 @@ namespace ProjectMongoDBReact.Models
             }
 
             [HttpPut("{id:length(24)}")]
+            [Route("Put/{id}")]
             public IActionResult Update(string id, Pokoj pokojIn)
             {
                 var p = _pokojService.Get(id);
