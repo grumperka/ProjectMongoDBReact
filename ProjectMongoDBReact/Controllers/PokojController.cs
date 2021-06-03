@@ -27,6 +27,7 @@ namespace ProjectMongoDBReact.Models
                 _pokojService.Get();
 
             [HttpGet("{id:length(24)}", Name = "GetPokoj")]
+            [Route("GetPokoj/{id}")]
             public ActionResult<Pokoj> Get(string id)
             {
                 var p = _pokojService.Get(id);

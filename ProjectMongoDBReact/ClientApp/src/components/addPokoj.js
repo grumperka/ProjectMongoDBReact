@@ -56,7 +56,7 @@ export class addPokoj extends Component {
             headers: { Authorization: `Bearer ${token}` },
             data: Pokoj //dane do przesłania
         }).then(
-            window.location.replace('https://localhost:44334/pokoje')
+            window.location.replace('https://localhost:44334/pokoj')
         );
 
     }
